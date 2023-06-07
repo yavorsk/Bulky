@@ -30,7 +30,7 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category categoryModel)
         {
-            if (categoryModel.Name != categoryModel.DisplayOrder.ToString())
+            if (categoryModel.Name == categoryModel.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("Name", "Name and Display order should not be the same!");
             }
