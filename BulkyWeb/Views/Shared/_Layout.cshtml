@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,8 +31,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
- @*                        @if (User.IsInRole(SD.Role_Admin))
-                        { *@
+                        @if (User.IsInRole(SD.Role_Admin))
+                        { 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Content Management
@@ -38,13 +41,14 @@
                                     <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></li>
                                     <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></li>
                                     <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a></li>
+                                    <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Orders</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                 </ul>
                             </li>
-                        @* } *@
+                        } 
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                <i class="bi bi-cart"></i>&nbsp; (0)
+                                @await Component.InvokeAsync("ShoppingCart")
                             </a>
                         </li>
                     </ul>
